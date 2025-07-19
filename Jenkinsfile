@@ -43,6 +43,7 @@ pipeline {
                     sh "docker push ${DOCKER_IMAGE}:${BUILD_NUMBER}"
                 }
             }
+        }
         stage('Deploy to EC2') {
             steps {
                 script {
@@ -62,6 +63,7 @@ pipeline {
 
     }
 }
+
 
     post {
         always {
