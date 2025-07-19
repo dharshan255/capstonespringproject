@@ -60,8 +60,8 @@ pipeline {
             }
         }
 
-        }
     }
+}
 
     post {
         always {
