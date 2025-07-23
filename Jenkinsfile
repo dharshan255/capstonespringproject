@@ -48,14 +48,11 @@ pipeline {
             steps {
                 script {
                     withCredentials([sshUserPrivateKey(credentialsId: 'ec2-ssh-key', keyFileVariable: 'KEYFILE')]) {
-                        sh """
-                            mkdir -p ~/.ssh
-                            ssh-keyscan -H 54.205.204.148  >> ~/.ssh/known_hosts
-                            ssh -i $KEYFILE ec2-user@54.205.204.148 'sudo docker pull ${DOCKER_IMAGE}:${BUILD_NUMBER} && \
-                            sudo docker stop spring-petclinic || true && \
-                            sudo docker rm spring-petclinic || true && \
-                            sudo docker run -d --name spring-petclinic -p 8081:8080 ${DOCKER_IMAGE}:${BUILD_NUMBER}'
-                        """
+                    sh '''
+                        mkdir -p ~/.ssh
+                        ssh-keyscan -H 54.205.204.148 >> ~/.ssh/known_hosts
+                        ssh -i $KEYFILE ec2-user@54.205.204.148 'echo Hello from EC2'
+                    '''
                     }
                 }
             }
