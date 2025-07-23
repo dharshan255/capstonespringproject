@@ -50,8 +50,8 @@ pipeline {
                     withCredentials([sshUserPrivateKey(credentialsId: 'ec2-ssh-key', keyFileVariable: 'KEYFILE')]) {
                         sh """
                             mkdir -p ~/.ssh
-                            ssh-keyscan -H 3.94.204.244  >> ~/.ssh/known_hosts
-                            ssh -i $KEYFILE ec2-user@3.94.204.244  'sudo docker pull ${DOCKER_IMAGE}:${BUILD_NUMBER} && \
+                            ssh-keyscan -H 54.166.196.209  >> ~/.ssh/known_hosts
+                            ssh -i $KEYFILE ec2-user@ 54.166.196.209 'sudo docker pull ${DOCKER_IMAGE}:${BUILD_NUMBER} && \
                             sudo docker stop spring-petclinic || true && \
                             sudo docker rm spring-petclinic || true && \
                             sudo docker run -d --name spring-petclinic -p 8081:8080 ${DOCKER_IMAGE}:${BUILD_NUMBER}'
