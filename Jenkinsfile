@@ -61,8 +61,8 @@ pipeline {
                     ]) {
                         sh """
                             mkdir -p ~/.ssh
-                            ssh-keyscan -H 54.165.150.105 >> ~/.ssh/known_hosts
-                            ssh -i \$KEYFILE ec2-user@54.165.150.105 '
+                            ssh-keyscan -H 54.85.104.120 >> ~/.ssh/known_hosts
+                            ssh -i \$KEYFILE ec2-user@54.85.104.120 '
                                 sudo docker pull ${DOCKER_IMAGE}:${BUILD_NUMBER} &&
                                 sudo docker stop spring-petclinic || true &&
                                 sudo docker rm spring-petclinic || true &&
